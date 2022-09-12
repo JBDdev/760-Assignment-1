@@ -28,7 +28,7 @@ public class KinematicMovement : MonoBehaviour
         velocity *= maxSpeed;
 
 
-        transform.position += velocity;
+        transform.position += velocity*Time.deltaTime;
 
         if (Mathf.Abs(distance.x) < 0.01 && Mathf.Abs(distance.y) < 0.01) 
         {
