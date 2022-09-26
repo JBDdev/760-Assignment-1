@@ -77,7 +77,7 @@ public class ArriveAlign : MonoBehaviour
 
         float goalRotation;
 
-        Debug.Log(rotationSize);
+        //Debug.Log(rotationSize);
         if (rotationSize < targetRadius)
             return;
 

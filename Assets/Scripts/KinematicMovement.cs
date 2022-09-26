@@ -40,10 +40,10 @@ public class KinematicMovement : MonoBehaviour
         }
 
 
-        getOrientation(transform.rotation.z, velocity);
+        getOrientation(velocity);
     }
 
-    void getOrientation(float previousOrientation, Vector3 velocity) 
+    void getOrientation(Vector3 velocity) 
     {
         transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-velocity.x, velocity.y) * Mathf.Rad2Deg, Vector3.forward);
     }

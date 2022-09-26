@@ -9,7 +9,6 @@ public class KinematicWander : MonoBehaviour
     [SerializeField] float rotationTimer;
     [SerializeField] float maxTimer;
 
-    [SerializeField] float boundsTimer = 0.0f;
     [SerializeField] float xBounds;
     [SerializeField] float yBounds;
 
@@ -23,20 +22,8 @@ public class KinematicWander : MonoBehaviour
     void Update()
     {
 
-        boundsTimer -= Time.deltaTime;
-        if (boundsTimer < 0.0f)
-        {
-            boundsTimer = 0.0f;
-        }
-
         if (Mathf.Abs(transform.position.x) > xBounds || Mathf.Abs(transform.position.y) > yBounds)
-            if (boundsTimer == 0.0f)
-            {
-                Flip();
-                boundsTimer = 2.0f;
-            }
-
-
+            Flip();
 
         Wander();
         rotationTimer += Time.deltaTime;
@@ -46,7 +33,6 @@ public class KinematicWander : MonoBehaviour
             changeDirection();
             rotationTimer = 0.0f;
         }
-
 
     }
 
@@ -65,8 +51,8 @@ public class KinematicWander : MonoBehaviour
 
     void Flip()
     {
-        Quaternion newRotation = transform.rotation;
-        newRotation.eulerAngles = new Vector3(0, 0, 180 + transform.rotation.eulerAngles.z);
-        transform.rotation = newRotation;
+        Vector3 velocity = Vector3.zero - transform.position;
+        //newRotation.eulerAngles = new Vector3(0, 0, 180 + transform.rotation.eulerAngles.z);
+        transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-velocity.x, velocity.y) * Mathf.Rad2Deg, Vector3.forward);
     }
 }

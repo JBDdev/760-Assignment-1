@@ -25,10 +25,10 @@ public class SeekSteering : MonoBehaviour
         direction.Normalize();
         transform.GetComponent<Rigidbody2D>().AddForce(direction * maxAcceleration, ForceMode2D.Impulse);
 
-        getOrientation(transform.rotation.z, direction);
+        getOrientation(direction);
     }
 
-    void getOrientation(float previousOrientation, Vector3 velocity)
+    void getOrientation(Vector3 velocity)
     {
         transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-velocity.x, velocity.y) * Mathf.Rad2Deg, Vector3.forward);
     }
